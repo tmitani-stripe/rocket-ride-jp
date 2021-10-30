@@ -267,9 +267,9 @@ class RideRequestViewController: UIViewController, STPPaymentContextDelegate, Lo
         // Show formatted price text and darker color
         let priceFormatter = NumberFormatter()
         priceFormatter.numberStyle = .currency
-        priceFormatter.locale = Locale(identifier: "en_US")
+        priceFormatter.locale = Locale(identifier: "ja_JP")
 
-        let priceString = priceFormatter.string(for: price / 100) ?? "ERROR"
+        let priceString = priceFormatter.string(for: price) ?? "ERROR"
         priceButton.setTitle(priceString, for: .normal)
         priceButton.setTitleColor(.riderDarkBlueColor, for: .normal)
     }
@@ -418,7 +418,7 @@ class RideRequestViewController: UIViewController, STPPaymentContextDelegate, Lo
         // Create charge using payment result
         guard let source = paymentResult.paymentMethod?.stripeId else { return }
 
-        MainAPIClient.shared.requestRide(source: source, amount: price, currency: "usd") { [weak self] (ride, error) in
+        MainAPIClient.shared.requestRide(source: source, amount: price, currency: "jpy") { [weak self] (ride, error) in
             guard let strongSelf = self else {
                 // View controller was deallocated
                 return
