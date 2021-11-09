@@ -1,12 +1,12 @@
 extends layout
 
 block content
-  h1.title.short-form Log in to your account
+  h1.title.short-form アカウントにログイン
   section.form.login
     form(method='POST', autocomplete='off')
       fieldset
-        .row(label='Email')
+        .row(label='Eメール')
           input(type='email', name='email', placeholder='john@example.com', required, autofocus)
-        .row(label='Password')
+        .row(label='パスワード')
           input(type='password', name='password', placeholder='••••••••', required)
-      input(class='primary', type='submit', value='Log in')
+      input(class='primary', type='submit', value='ログイン')

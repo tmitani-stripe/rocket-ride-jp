@@ -4,38 +4,38 @@ block header
   if showBanner
     .banner
       .message
-        strong Congratulations, your account is set up. 
-        span.secondary-text Fire up your rocket and take your first passengers.
+        strong おめでとうございます、あなたのアカウントが設定されました。
+        span.secondary-text ロケットに火を入れ、最初の乗客を乗せましょう！
 block content
   .dashboard
     .user
       .block.profile
         .photo
-        p Pilot since #{moment(pilot.created).format('MMM YYYY')}
+        p  #{moment(pilot.created).format('MMM YYYY')}　よりパイロット開始
         h1 #{pilot.displayName()}
         h2
-          a(href='/pilots/stripe/dashboard?account=true') View Stripe account
+          a(href='/pilots/stripe/dashboard?account=true') ストライプアカウントを見る
 
       .block.week
-        p This week
+        p 今週
         h1 ¥#{(ridesTotalAmount).toFixed(0)}
-        h2 #{rides.length} rides
+        h2 #{rides.length} ライド
       .block.available
-        p Your balance
+        p アカウント残高
         h1 #{balanceCurrency}#{((balanceAvailable + balancePending)).toFixed(0)}
-        h2  #{balanceCurrency}#{(balanceAvailable).toFixed(0)} available
+        h2  #{balanceCurrency}#{(balanceAvailable).toFixed(0)} 出金可能
       .block.stripe
         form.payout(action='/pilots/stripe/payout', method='POST', autocomplete='off')
-          input(class='primary' type='submit', value='Pay out now' disabled=(balanceAvailable===0))
+          input(class='primary' type='submit', value='銀行口座へ入金' disabled=(balanceAvailable===0))
         p
-          a(href='/pilots/stripe/dashboard') View payouts on Stripe
+          a(href='/pilots/stripe/dashboard') Stripeで入金情報を確認
     section.rides
-      h4 Recent rides
+      h4 最新のライド情報
       if rides.length == 0
         .no-rides
           .rocket
-          h1 No rides to display yet
-          h2 Fly with some passengers!
+          h1 まだライドはありません。
+          h2 乗客を乗せて、飛び立ちましょう！
       else
         .list
           each ride in rides
